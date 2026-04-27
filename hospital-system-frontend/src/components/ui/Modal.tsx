@@ -34,10 +34,10 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md' }:
       {/* Modal */}
       <div className={`
         relative bg-white rounded-2xl shadow-xl border border-[#e2e8f0]
-        w-full ${sizeClasses[size]} max-h-[90vh] overflow-y-auto
+        w-full ${sizeClasses[size]} max-h-[90vh] flex flex-col
       `}>
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-[#f1f5f9]">
+        <div className="flex items-center justify-between p-6 border-b border-[#f1f5f9] flex-shrink-0">
           <h2 className="text-lg font-600 text-[#0f172a]">{title}</h2>
           <button
             onClick={onClose}
@@ -47,7 +47,7 @@ export default function Modal({ isOpen, onClose, title, children, size = 'md' }:
           </button>
         </div>
         {/* Body */}
-        <div className="p-6">
+        <div className="p-6 overflow-y-auto flex-1">
           {children}
         </div>
       </div>
