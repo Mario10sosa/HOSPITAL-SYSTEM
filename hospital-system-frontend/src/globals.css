@@ -1,79 +1,793 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-@custom-variant dark (&:is(.dark *));
-
-:root {
-  --bg:            #f8fafc;
-  --sidebar-bg:    #ffffff;
-  --card-bg:       #ffffff;
-  --primary:       #2563eb;
-  --primary-hover: #1d4ed8;
-  --primary-light: #eff6ff;
-  --success:       #059669;
-  --warning:       #d97706;
-  --danger:        #dc2626;
-  --text-primary:   #0f172a;
-  --text-secondary: #64748b;
-  --text-muted:     #94a3b8;
-  --border:        #e2e8f0;
-  --border-color:  #e2e8f0;
-  --background:    #f8fafc;
-  --shadow-sm:     0 1px 3px rgba(0,0,0,0.06);
-  --shadow-md:     0 4px 12px rgba(0,0,0,0.08);
-  --radius: 0.75rem;
+* {
+  box-sizing: border-box;
 }
 
-@theme inline {
-  --font-sans: 'DM Sans', system-ui, sans-serif;
-  --color-background: var(--bg);
-  --color-foreground: var(--text-primary);
-  --color-card: var(--card-bg);
-  --color-card-foreground: var(--text-primary);
-  --color-primary: var(--primary);
-  --color-primary-foreground: #ffffff;
-  --color-border: var(--border);
-  --color-input: var(--border);
-  --color-ring: var(--primary);
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
+html {
+  font-size: 14px;
 }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'DM Sans', system-ui, sans-serif;
-  background-color: var(--bg);
-  color: var(--text-primary);
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #eef4fb;
+  color: #0f172a;
+}
+
+/* =========================
+   LAYOUT GENERAL
+========================= */
+
+main {
   min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
+  background: linear-gradient(135deg, #eef4fb, #f8fbff) !important;
+  padding: 26px !important;
 }
 
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: #f1f5f9; }
-::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: var(--primary); }
-
-@keyframes skeleton-loading {
-  0%   { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-.skeleton {
-  background: linear-gradient(90deg, #f1f5f9 25%, #e8edf2 50%, #f1f5f9 75%);
-  background-size: 200% 100%;
-  animation: skeleton-loading 1.5s infinite;
+/* Contenedores principales */
+main > div,
+section,
+.bg-white,
+.card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 22px !important;
+  box-shadow: 0 14px 35px rgba(15, 23, 42, 0.08) !important;
 }
 
-.card-hover {
-  transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+/* =========================
+   SIDEBAR MODERNO
+========================= */
+
+aside,
+.sidebar {
+  width: 250px !important;
+  min-width: 250px !important;
+  height: 100vh !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(14px);
+  border-right: 1px solid #dbeafe !important;
+  box-shadow: 8px 0 30px rgba(15, 23, 42, 0.08) !important;
+  padding: 24px 18px !important;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
-.card-hover:hover {
-  box-shadow: var(--shadow-md);
-  border-color: #93c5fd;
+
+/* X cerrar */
+.sidebar > button:first-child,
+aside > button:first-child {
+  background: transparent !important;
+  color: #0f172a !important;
+  font-size: 18px !important;
+  box-shadow: none !important;
+}
+
+/* Logo */
+aside h1,
+.sidebar h1 {
+  font-size: 1.55rem !important;
+  font-weight: 900 !important;
+  color: #0f172a !important;
+  margin-bottom: 4px !important;
+}
+
+aside p,
+.sidebar p {
+  font-size: 0.86rem !important;
+  color: #64748b !important;
+  margin-bottom: 22px !important;
+}
+
+/* Separador */
+aside hr,
+.sidebar hr {
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+  margin: 18px 0;
+}
+
+/* Links menú */
+aside a,
+.sidebar a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  min-height: 44px !important;
+  padding: 10px 14px !important;
+  border-radius: 14px !important;
+  color: #334155 !important;
+  font-size: 0.92rem !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+  margin-bottom: 8px !important;
+}
+
+aside a:hover,
+.sidebar a:hover {
+  background: #eff6ff !important;
+  color: #2563eb !important;
+  transform: translateX(4px);
+}
+
+/* Link activo */
+aside a.active,
+.sidebar a.active,
+aside a[aria-current="page"] {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 22px rgba(37, 99, 235, 0.28) !important;
+}
+
+/* =========================
+   TÍTULOS
+========================= */
+
+h1 {
+  color: #0f172a !important;
+  font-size: 2rem !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.04em;
+}
+
+h2 {
+  color: #0f172a !important;
+  font-size: 1.4rem !important;
+  font-weight: 850 !important;
+}
+
+h3 {
+  color: #0f172a !important;
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+}
+
+p {
+  color: #475569 !important;
+  font-size: 0.95rem !important;
+}
+
+/* =========================
+   HEADER DE CADA PÁGINA
+========================= */
+
+main > div:first-child {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  padding: 8px 0 18px 0 !important;
+}
+
+main > div:first-child h1 {
+  color: #0f172a !important;
+}
+
+/* =========================
+   CARDS DASHBOARD
+========================= */
+
+.grid {
+  gap: 18px !important;
+}
+
+.grid > div {
+  background: #ffffff !important;
+  border-radius: 20px !important;
+  border: 1px solid #dbeafe !important;
+  box-shadow: 0 12px 28px rgba(37, 99, 235, 0.08) !important;
+  padding: 20px !important;
+  min-height: 95px !important;
+  transition: all 0.2s ease !important;
+}
+
+.grid > div:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 36px rgba(37, 99, 235, 0.14) !important;
+}
+
+/* =========================
+   BOTONES
+========================= */
+
+button {
+  border: none;
+  cursor: pointer;
+  border-radius: 14px !important;
+  font-weight: 800 !important;
+  padding: 10px 16px !important;
+  transition: all 0.2s ease !important;
+}
+
+button:hover {
   transform: translateY(-1px);
 }
 
-.table-row-alt:nth-child(even) { background-color: #f8fafc; }
+.bg-blue-600,
+button.bg-blue-600 {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+  color: white !important;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.28) !important;
+}
+
+.bg-red-600,
+button.bg-red-600 {
+  background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+  color: white !important;
+}
+
+/* =========================
+   FORMULARIOS
+========================= */
+
+input,
+select,
+textarea {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 12px !important;
+  padding: 10px 13px !important;
+  font-size: 0.92rem !important;
+  color: #0f172a !important;
+  outline: none !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12) !important;
+}
+
+label {
+  font-weight: 800 !important;
+  color: #334155 !important;
+}
+
+/* =========================
+   TABLAS MODERNAS
+========================= */
+
+table {
+  width: 100%;
+  border-collapse: separate !important;
+  border-spacing: 0 8px !important;
+  font-size: 0.88rem !important;
+}
+
+thead tr {
+  background: #dbeeff !important;
+}
+
+thead th {
+  padding: 13px 15px !important;
+  color: #334155 !important;
+  font-size: 0.72rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.28em !important;
+  text-transform: uppercase;
+}
+
+tbody tr {
+  background: #ffffff !important;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05) !important;
+  border-radius: 14px !important;
+}
+
+tbody td {
+  padding: 14px 15px !important;
+  color: #334155 !important;
+}
+
+/* =========================
+   BADGES
+========================= */
+
+.badge,
+span[class*="bg"] {
+  padding: 5px 10px !important;
+  border-radius: 999px !important;
+  font-size: 0.75rem !important;
+  font-weight: 900 !important;
+}
+
+/* =========================
+   HAMBURGUESA
+========================= */
+
+.hamburger-btn {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1200;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  font-size: 22px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 24px rgba(37, 99, 235, 0.35);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.42);
+  z-index: 900;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 13px;
+  }
+
+  .hamburger-btn {
+    display: flex;
+  }
+
+  aside,
+  .sidebar {
+    position: fixed !important;
+    left: 0;
+    top: 0;
+    transform: translateX(-110%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
+
+  aside.sidebar-open,
+  .sidebar.sidebar-open {
+    transform: translateX(0);
+  }
+
+  main {
+    width: 100% !important;
+    padding: 76px 14px 20px 14px !important;
+  }
+
+  table {
+    min-width: 850px;
+  }
+
+  .bg-white,
+  .card {
+    overflow-x: auto;
+  }
+}
+
+/* =========================
+   MODALES Y BOTONES MODERNOS
+========================= */
+
+.fixed,
+[role="dialog"] {
+  backdrop-filter: blur(6px);
+}
+
+/* Caja del modal */
+.fixed .bg-white,
+[role="dialog"],
+.modal {
+  border-radius: 24px !important;
+  overflow: hidden !important;
+  box-shadow: 0 25px 70px rgba(15, 23, 42, 0.22) !important;
+}
+
+/* Header modal */
+.fixed h2,
+[role="dialog"] h2 {
+  font-size: 1.55rem !important;
+  font-weight: 900 !important;
+  color: #0f172a !important;
+}
+
+/* Botones tipo filtro */
+button {
+  min-height: 42px;
+}
+
+button.bg-slate-900,
+.bg-slate-900,
+button.bg-gray-900,
+.bg-gray-900 {
+  background: #0f172a !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.18) !important;
+}
+
+button.bg-blue-500,
+button.bg-blue-600,
+.bg-blue-500,
+.bg-blue-600 {
+  background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+  color: #ffffff !important;
+}
+
+/* Cards oscuras de opciones */
+.bg-slate-900,
+.bg-gray-900,
+[class*="bg-slate-900"],
+[class*="bg-gray-900"] {
+  color: #ffffff !important;
+  border-radius: 14px !important;
+}
+
+.bg-slate-900 p,
+.bg-slate-900 span,
+.bg-gray-900 p,
+.bg-gray-900 span {
+  color: #cbd5e1 !important;
+}
+
+/* Cards seleccionadas azules */
+.border-blue-500,
+.border-blue-600 {
+  background: #eff6ff !important;
+  border: 1.5px solid #3b82f6 !important;
+  color: #1d4ed8 !important;
+}
+
+/* Inputs dentro de modales */
+.fixed input,
+.fixed select,
+.fixed textarea,
+[role="dialog"] input,
+[role="dialog"] select,
+[role="dialog"] textarea {
+  min-height: 48px !important;
+  border-radius: 999px !important;
+}
+
+/* Textarea más normal */
+.fixed textarea,
+[role="dialog"] textarea {
+  border-radius: 18px !important;
+  min-height: 76px !important;
+}
+
+/* Cards de expediente oscuro */
+.bg-slate-950,
+.bg-gray-950,
+[class*="bg-slate-950"],
+[class*="bg-gray-950"] {
+  background: #101828 !important;
+  color: #ffffff !important;
+  border-radius: 14px !important;
+}
+
+.bg-slate-950 p,
+.bg-gray-950 p {
+  color: #d0d5dd !important;
+}
+
+/* Texto verde precio */
+.text-emerald-500,
+.text-green-500 {
+  color: #10b981 !important;
+  font-weight: 900 !important;
+}
+
+/* Botones inferiores modal */
+.fixed button,
+[role="dialog"] button {
+  font-weight: 800 !important;
+}
+
+/* Botón deshabilitado */
+button:disabled {
+  opacity: 0.55 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+/* Responsive modal */
+@media (max-width: 768px) {
+  .fixed .bg-white,
+  [role="dialog"],
+  .modal {
+    width: calc(100vw - 24px) !important;
+    max-width: calc(100vw - 24px) !important;
+    margin: 12px !important;
+  }
+
+  .fixed input,
+  .fixed select,
+  .fixed textarea {
+    width: 100% !important;
+  }
+
+  .fixed .grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* =========================
+   QUITAR NEGRO EN OPCIONES Y MODALES
+========================= */
+
+/* Opciones oscuras */
+.bg-slate-900,
+.bg-gray-900,
+.bg-slate-950,
+.bg-gray-950,
+[class*="bg-slate-900"],
+[class*="bg-gray-900"],
+[class*="bg-slate-950"],
+[class*="bg-gray-950"] {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  border: 1.5px solid #dbeafe !important;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08) !important;
+}
+
+/* Textos dentro de esas cards */
+.bg-slate-900 *,
+.bg-gray-900 *,
+.bg-slate-950 *,
+.bg-gray-950 *,
+[class*="bg-slate-900"] *,
+[class*="bg-gray-900"] *,
+[class*="bg-slate-950"] *,
+[class*="bg-gray-950"] * {
+  color: #0f172a !important;
+}
+
+/* Estado seleccionado */
+.border-blue-500,
+.border-blue-600,
+[class*="border-blue"] {
+  background: #eaf2ff !important;
+  color: #1d4ed8 !important;
+  border: 2px solid #2563eb !important;
+}
+
+/* Texto dentro de seleccionado */
+.border-blue-500 *,
+.border-blue-600 *,
+[class*="border-blue"] * {
+  color: #1d4ed8 !important;
+  font-weight: 800 !important;
+}
+
+/* Radio / checkbox visibles */
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: #2563eb !important;
+}
+
+/* Botones de filtros: Pendientes, Completadas, Canceladas */
+button.bg-slate-900,
+button.bg-gray-900,
+button[class*="bg-slate"],
+button[class*="bg-gray"] {
+  background: #ffffff !important;
+  color: #334155 !important;
+  border: 1.5px solid #dbeafe !important;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06) !important;
+}
+
+/* Botón activo azul */
+button.bg-blue-500,
+button.bg-blue-600,
+button[class*="bg-blue"] {
+  background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+/* Texto del botón activo */
+button.bg-blue-500 *,
+button.bg-blue-600 *,
+button[class*="bg-blue"] * {
+  color: #ffffff !important;
+}
+
+/* =========================
+   FIX DEFINITIVO OPCIONES TIPO
+========================= */
+
+label:has(input[type="radio"]),
+label:has(input[type="checkbox"]) {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1.5px solid #dbeafe !important;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08) !important;
+}
+
+/* Texto dentro de opciones */
+label:has(input[type="radio"]) *,
+label:has(input[type="checkbox"]) * {
+  color: #334155 !important;
+}
+
+/* Opción seleccionada */
+label:has(input[type="radio"]:checked),
+label:has(input[type="checkbox"]:checked) {
+  background: #eaf2ff !important;
+  border: 2px solid #2563eb !important;
+}
+
+/* Texto de opción seleccionada */
+label:has(input[type="radio"]:checked) *,
+label:has(input[type="checkbox"]:checked) * {
+  color: #1d4ed8 !important;
+  font-weight: 800 !important;
+}
+
+/* Radio y checkbox */
+label input[type="radio"],
+label input[type="checkbox"] {
+  accent-color: #2563eb !important;
+}
+/* =========================
+   FIX EXPEDIENTE Y TOTAL
+========================= */
+
+div[class*="bg-slate"],
+div[class*="bg-gray"],
+div[class*="bg-zinc"],
+div[class*="bg-neutral"] {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  border: 1.5px solid #dbeafe !important;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08) !important;
+}
+
+/* Textos internos */
+div[class*="bg-slate"] *,
+div[class*="bg-gray"] *,
+div[class*="bg-zinc"] *,
+div[class*="bg-neutral"] * {
+  color: #334155 !important;
+}
+
+/* Total */
+div[class*="bg-slate"] .text-emerald-500,
+div[class*="bg-gray"] .text-emerald-500,
+div[class*="bg-zinc"] .text-emerald-500,
+div[class*="bg-neutral"] .text-emerald-500,
+.text-emerald-500,
+.text-green-500 {
+  color: #10b981 !important;
+  font-weight: 900 !important;
+}
+
+/* =========================
+   FIX SOLO NEGROS (FORZADO)
+========================= */
+
+/* Cualquier fondo oscuro real */
+[class*="bg-"][class*="900"],
+[class*="bg-"][class*="800"],
+[class*="bg-"][class*="950"],
+[class*="bg-"][class*="black"],
+[class*="bg-[#0"],
+[class*="bg-[#1"],
+[class*="bg-[#2"] {
+  background: #f8fafc !important;
+  color: #0f172a !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* Texto dentro */
+[class*="bg-"][class*="900"] *,
+[class*="bg-"][class*="800"] *,
+[class*="bg-"][class*="950"] *,
+[class*="bg-"][class*="black"] *,
+[class*="bg-[#0"] *,
+[class*="bg-[#1"] *,
+[class*="bg-[#2"] * {
+  color: #334155 !important;
+}
+
+/* Caso específico: tarjetas del expediente */
+div:has(> p):has(> p):has(> p) {
+  background: #f8fafc !important;
+}
+
+/* TOTAL (verde) */
+.text-emerald-500,
+.text-green-500 {
+  color: #10b981 !important;
+  font-weight: 900 !important;
+}
+
+/* =========================
+   AJUSTE MODAL EXPEDIENTE
+========================= */
+
+.fixed .bg-white {
+  max-width: 620px !important;
+  width: 92% !important;
+  border-radius: 24px !important;
+}
+
+.fixed .bg-white > div {
+  padding: 24px !important;
+}
+
+.fixed h2 {
+  font-size: 1.6rem !important;
+  font-weight: 900 !important;
+}
+
+.fixed div[class*="bg-"] {
+  border-radius: 14px !important;
+  padding: 16px !important;
+}
+
+.fixed div[class*="bg-"] p:first-child {
+  font-weight: 800 !important;
+  color: #1e293b !important;
+  margin-bottom: 6px !important;
+}
+
+.fixed div[class*="bg-"] p:last-child {
+  color: #475569 !important;
+  line-height: 1.5 !important;
+}
+
+/* =========================
+   FIX BOTONES MODALES
+========================= */
+
+.fixed .flex.justify-end,
+[role="dialog"] .flex.justify-end {
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+  gap: 12px !important;
+  position: static !important;
+  min-height: auto !important;
+  margin-top: 22px !important;
+}
+
+/* Botón principal */
+.fixed button.bg-blue-600,
+.fixed button.bg-blue-500,
+[role="dialog"] button.bg-blue-600,
+[role="dialog"] button.bg-blue-500 {
+  position: static !important;
+  transform: none !important;
+  height: 44px !important;
+  min-width: 145px !important;
+  padding: 0 22px !important;
+  border-radius: 14px !important;
+  font-size: 0.92rem !important;
+  font-weight: 900 !important;
+}
+
+/* Botón cancelar */
+.fixed button:not(.bg-blue-600):not(.bg-blue-500),
+[role="dialog"] button:not(.bg-blue-600):not(.bg-blue-500) {
+  height: 42px !important;
+  min-width: 115px !important;
+  padding: 0 18px !important;
+  border-radius: 14px !important;
+  font-size: 0.9rem !important;
+  font-weight: 800 !important;
+  opacity: 1 !important;
+  background: #ffffff !important;
+  color: #334155 !important;
+  border: 1px solid #dbeafe !important;
+}
+
+/* Orden: cancelar izquierda, principal derecha */
+.fixed button:not(.bg-blue-600):not(.bg-blue-500) {
+  order: 1;
+}
+
+.fixed button.bg-blue-600,
+.fixed button.bg-blue-500 {
+  order: 2;
+}
